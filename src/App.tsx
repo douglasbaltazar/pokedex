@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import { blue, green, purple } from "@mui/material/colors";
+import { blue, purple } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "services/queries";
 
 function App() {
     const theme = createTheme({
@@ -22,15 +24,17 @@ function App() {
         },
     });
     return (
-        <BrowserRouter>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                </Routes>
-            </ThemeProvider>
-        </BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Navbar />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </ThemeProvider>
+            </BrowserRouter>
+        </QueryClientProvider>
     );
 }
 
