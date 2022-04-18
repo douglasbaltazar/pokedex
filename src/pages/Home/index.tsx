@@ -61,7 +61,11 @@ const Home: React.FC = () => {
                         }}
                     />
                     <CardContent>
-                        
+                    {apiPokemons.data?.results && apiPokemons.data.results.map((item: any) => (
+                            <Box key={item.name}>
+                                <h1>{item.name} </h1>
+                            </Box>
+                        ))}
                     </CardContent>
                 </Card>
             </Box>
